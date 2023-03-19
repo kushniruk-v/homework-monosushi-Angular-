@@ -1,0 +1,20 @@
+{
+  "actions": [
+    {
+      "date": "2023-03-19T09:49:10.461Z",
+      "name": "рол тижня",
+      "title": "50% знижки на рол тижня",
+      "description": "Щотижня діє знижка на один із ролів",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fimgonline.jpg?alt=media&token=097b672e-c000-486d-927e-04ba8efb482d",
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "name": "роли",
+      "path": "rolls",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fnav-img-rolls.svg?alt=media&token=f29897ac-87b9-49ec-81dc-2828614f0589",
+      "id": 1
+    }
+  ]
+}

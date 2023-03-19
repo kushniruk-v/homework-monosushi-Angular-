@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-4 my-5 mx-4">
+    <button type="button" class="btn primary" (click)="addAction()">
+      Додати акцію
+    </button>
+  </div>
+
+  <div *ngIf="!isModal" class="col-8 mx-4 modal" [class.modal]="isOpen">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Назва</th>
+          <th scope="col">Заголовок</th>
+          <th scope="col">Опис</th>
+          <th scope="col">Картинка</th>
+          <th scope="col">Дії</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let action of adminActions">
+          <td>{{ action.date | date : "MM.yyyy" }}</td>
+          <td>{{ action.name }}</td>
+          <td>{{ action.title }}</td>
+          <td>{{ action.description }}</td>
+
+          <td>
+            <img [src]="action.imagePath" alt="" height="50px" />
+          </td>
+          <td>
+            <div class="list-group">
+              <button
+                (click)="editAction(action)"
+                type="button"
+                class="btn nav-item"
+              >
+                Редагувати
+              </button>
+              <button
+                (click)="deleteAction(action)"
+                type="button"
+                class="btn nav-item"
+              >
+                Видалити
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-container *ngIf="isModal">
+    <form [formGroup]="actionForm" (ngSubmit)="saveAction()">
+      <div class="d-flex mx-4">
+        <label for="name" class="form-label"></label>
+        <input
+          formControlName="name"
+          name="name"
+          type="text"
+          class="form-control w-25"
+          id="name"
+          placeholder="*Назва"
+        />
+        <label for="title" class="form-label"></label>
+        <input
+          formControlName="title"
+          name="title"
+          type="text"
+          class="form-control w-25 mx-4"
+          id="title"
+          placeholder="*Заголовок"
+        />
+      </div>
+      <label for="description"></label>
+      <textarea
+        formControlName="description"
+        name="description"
+        id="description"
+        class="form-control w-50 my-3 mx-4"
+        placeholder="*Опис"
+        id="floatingTextarea2"
+        style="height: 100px"
+      ></textarea>
+
+      <ng-container *ngIf="!isUploaded">
+        <div class="mb-3">
+          <label for="formFile" class="form-label"></label>
+          <input
+            class="form-control w-25 mx-4"
+            type="file"
+            id="formFile"
+            (change)="upload($event)"
+          />
+        </div>
+        <div
+          class="progress mx-4 mb-2"
+          role="progressbar"
+          aria-label="Info striped example"
+          [style.width.%]="uploadPercent"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div
+            class="progress-bar progress-bar-striped bg-info"
+            style="width: 25%"
+          ></div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="isUploaded">
+        <img
+          [src]="valueByControl('imagePath')"
+          alt=""
+          height="100px "
+          class="mx-4"
+        />
+        <button type="button" class="btn primary" (click)="deleteImage()">
+          Видалити
+        </button>
+      </ng-container>
+      <div class="col-4 my-2 mx-4">
+        <button
+          [disabled]="actionForm.invalid"
+          type="submit"
+          class="btn primary"
+        >
+          Зберегти
+        </button>
+      </div>
+    </form>
+  </ng-container>
+</div>
