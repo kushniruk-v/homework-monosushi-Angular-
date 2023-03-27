@@ -13,7 +13,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AdminActionComponent } from './admin/admin-action/admin-action.component';
-
+import { AdminTovaryComponent } from './admin/admin-tovary/admin-tovary.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
     { path: 'category', component: AdminCategoryComponent },
     { path: 'action', component:AdminActionComponent },
+    {path:'tovary',component: AdminTovaryComponent},
     
     { path: '', pathMatch: 'full', redirectTo: 'action' }
   ] },

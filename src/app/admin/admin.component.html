@@ -7,7 +7,9 @@
     <li [class.active]="isActive" class="nav-item border border-start-0   ">
       <a class="nav-link  text-center text-black" [routerLink]="[ 'category' ]" routerLinkActive="active">Категорії</a>
     </li>
-
+    <li [class.active]="isActive" class="nav-item border border-start-0   ">
+      <a class="nav-link  text-center text-black" [routerLink]="[ 'tovary' ]" routerLinkActive="active">Товари</a>
+    </li>
   </ul>
   <div class="tab-content w-100" id="v-pills-tabContent">
     <router-outlet></router-outlet>

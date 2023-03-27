@@ -10,6 +10,7 @@ import {
   getDownloadURL,
   deleteObject,
 } from '@angular/fire/storage';
+import { ImageService } from 'src/app/shared/services/image/image.service';
 
 @Component({
   selector: 'app-admin-action',
@@ -29,7 +30,7 @@ export class AdminActionComponent {
   constructor(
     private fb: FormBuilder,
     private actionService: ActionService,
-    private storage: Storage
+    private ImageService: ImageService
   ) {}
   ngOnInit(): void {
     this.initActionForm();
@@ -106,7 +107,7 @@ export class AdminActionComponent {
   }
   upload(event: any): void {
     const file = event.target.files[0];
-    this.uploadFile('images', file.name, file)
+    this.ImageService.uploadFile('images', file.name, file)
       .then((data) => {
         this.actionForm.patchValue({
           imagePath: data,
@@ -118,41 +119,16 @@ export class AdminActionComponent {
       });
   }
 
-  async uploadFile(
-    folder: string,
-    name: string,
-    file: File | null
-  ): Promise<string> {
-    const path = `${folder}/${name}`;
-    let url = '';
-    if (file) {
-      try {
-        const storageRef = ref(this.storage, path);
-        const task = uploadBytesResumable(storageRef, file);
-        percentage(task).subscribe((data) => {
-          this.uploadPercent = data.progress;
-        });
-        await task;
-        url = await getDownloadURL(storageRef);
-      } catch (e: any) {
-        console.error(e);
-      }
-    } else {
-      console.log('wrong format');
-    }
-    return Promise.resolve(url);
-  }
-
   deleteImage(): void {
-    const task = ref(this.storage, this.valueByControl('imagePath'));
-    deleteObject(task).then(() => {
-      console.log('File deleted');
-      this.isUploaded = false;
-      this.uploadPercent = 0;
-      this.actionForm.patchValue({
-        imagePath: null,
+    this.ImageService.deleteUploadFile(this.valueByControl('imagePath'))
+      .then(() => {
+        this.isUploaded = false;
+        this.uploadPercent = 0;
+        this.actionForm.patchValue({ imagePath: null });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   }
 
   valueByControl(control: string): string {

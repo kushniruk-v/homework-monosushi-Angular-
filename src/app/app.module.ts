@@ -20,6 +20,7 @@ import { AdminComponent } from './admin/admin.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { AdminTovaryComponent } from './admin/admin-tovary/admin-tovary.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
        AdminCategoryComponent,
        AdminActionComponent,
        AdminComponent,
+       AdminTovaryComponent,
     
   ],
   imports: [

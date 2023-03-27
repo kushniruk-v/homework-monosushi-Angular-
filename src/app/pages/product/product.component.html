@@ -3,4 +3,29 @@
     <hr class="border border-primary border-2 opacity-75" />
     <h2 class="title text-center">Продукти</h2>
   </div>
+
+  <div class="row mx-4 my-4">
+    <div class="col-3" *ngFor="let tovary of userTovary">
+      <div class="border-icon">
+        <img
+          [src]="tovary.imagePath"
+          class="my-2 mx-4"
+          width="250"
+          height="200"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ tovary.name }}</h5>
+          <div class="d-flex">
+            <p class="card-text mx-2 my-2">{{ tovary.description }}</p>
+            <p class="card-text mx-4 my-4">
+              <b>{{ tovary.weight }}г</b>
+            </p>
+          </div>
+          <p class="card-text mx-4">
+            <b>{{ tovary.price }}грн</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>

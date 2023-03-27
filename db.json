@@ -11,9 +11,44 @@
   ],
   "categories": [
     {
-      "name": "роли",
+      "name": "Роли",
       "path": "rolls",
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fnav-img-rolls.svg?alt=media&token=f29897ac-87b9-49ec-81dc-2828614f0589",
+      "id": 1
+    },
+    {
+      "name": "Сети",
+      "path": "sets",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fnav-img-sets.svg?alt=media&token=ba72f3cb-8191-4f5a-a170-399d480e4a92",
+      "id": 2
+    },
+    {
+      "name": "Напої",
+      "path": "drinks",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fnav-img-drinks.svg?alt=media&token=7883876a-7ccf-443a-bc57-146782799114",
+      "id": 3
+    },
+    {
+      "name": "Соуси",
+      "path": "sauces",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Ficon.svg?alt=media&token=7a07adc3-c752-414c-a5c1-38a114c04e8a",
+      "id": 4
+    }
+  ],
+  "tovary": [
+    {
+      "category": {
+        "name": "Роли",
+        "path": "rolls",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fnav-img-rolls.svg?alt=media&token=f29897ac-87b9-49ec-81dc-2828614f0589",
+        "id": 1
+      },
+      "name": "Мексиканський – 50%",
+      "path": "meksykanskyj-50",
+      "description": "Рис, крем сир, креветка, огірок, кунжут, лосось, гуакамоле, шрірача",
+      "weight": "370",
+      "price": "185",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2F4.-meksykanskyj.jpg?alt=media&token=2dbd36ee-f219-4028-a7cf-1eabd91375ce",
       "id": 1
     }
   ]
