@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <div class="card mx-auto mb-3" style="max-width: 540px">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              [src]="currentTovary.imagePath"
+              class="img-fluid rounded-start my-4"
+              alt="currentTovary.name"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ currentTovary.name }}</h5>
+              <p class="card-text">Склад {{ currentTovary.description }}</p>
+              <p class="card-text">Вага{{ currentTovary.weight }}г</p>
+              <p class="card-text">Ціна{{ currentTovary.price }}грн</p>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button
+                  (click)="tovaryCount(currentTovary, false)"
+                  type="button"
+                  class="btn mx-1"
+                >
+                  -
+                </button>
+                <input
+                  class="form-control"
+                  type="text"
+                  [value]="currentTovary.count"
+                  style="width: 50px"
+                />
+
+                <button
+                  (click)="tovaryCount(currentTovary, true)"
+                  type="button"
+                  class="btn mx-1"
+                >
+                  +
+                </button>
+              </div>
+
+              <button
+                (click)="addToBasket(currentTovary)"
+                type="submit"
+                class="btn primary"
+              >
+                Замовити
+              </button>
+
+              <h4 class="card-title mt-3">
+                {{ currentTovary.price * currentTovary.count }}грн
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

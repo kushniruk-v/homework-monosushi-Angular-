@@ -1,0 +1,79 @@
+<main>
+  <div class="conteiner">
+    <hr class="border border-primary border-2 opacity-75" />
+    <h2 class="title text-center">Продукти</h2>
+  </div>
+
+  <div class="row mx-4 my-4">
+    <div class="col-3" *ngFor="let tovary of userTovary">
+      <div class="border-icon">
+        <img
+          [routerLink]="[
+            '/product-category/' + tovary.category.path,
+            tovary.id
+          ]"
+          [src]="tovary.imagePath"
+          class="my-2 mx-4"
+          style="max-width: 70%"
+          [alt]="tovary.name"
+        />
+        <div class="card-body">
+          <h5
+            [routerLink]="[
+              '/product-category/' + tovary.category.path,
+              tovary.id
+            ]"
+            class="card-title text-center"
+          >
+            {{ tovary.name }}
+          </h5>
+          <div class="d-flex">
+            <p class="card-text mx-2 my-2">{{ tovary.description }}</p>
+            <p class="card-text mx-4 my-4">
+              <b>{{ tovary.weight }}г</b>
+            </p>
+          </div>
+
+          <div
+            class="d-flex my-4 mx-1 justify-content-between align-items-center"
+            role="group"
+            aria-label="Basic example"
+            style="height: 40px"
+          >
+            <p class="card-text my-1">
+              <b>{{ tovary.price }}грн</b>
+            </p>
+            <button
+              (click)="tovaryCount(tovary, false)"
+              type="button"
+              class="btn mx-1"
+            >
+              -
+            </button>
+            <input
+              class="form-control"
+              type="text"
+              [value]="tovary.count"
+              style="width: 45px"
+            />
+
+            <button
+              (click)="tovaryCount(tovary, true)"
+              type="button"
+              class="btn mx-1"
+            >
+              +
+            </button>
+            <button
+              (click)="addToBasket(tovary)"
+              type="submit"
+              class="btn primary"
+            >
+              Замовити
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

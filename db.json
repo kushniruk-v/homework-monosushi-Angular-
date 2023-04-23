@@ -1,11 +1,11 @@
 {
   "actions": [
     {
-      "date": "2023-03-19T09:49:10.461Z",
+      "date": "2023-04-20T18:25:36.316Z",
       "name": "рол тижня",
-      "title": "50% знижки на рол тижня",
-      "description": "Щотижня діє знижка на один із ролів",
-      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fimgonline.jpg?alt=media&token=097b672e-c000-486d-927e-04ba8efb482d",
+      "title": "знижка 50%",
+      "description": "Щотижня діє знижка 50% на один з ролів у нашому меню.\n“Рол тижня” ви можете знайти на головній сторінці нашого сайту.\nЗнижка діє при мінімальній сумі замовлення 300 грн.\nЦя акція не поєднується з іншими акціями.",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fimgonline-com-ua-compressed-ryna9n84oqh1-scaled-697x379.jpg?alt=media&token=2757457b-d234-4e1b-a80a-c7a1a4aa7ae8",
       "id": 1
     }
   ],
@@ -50,6 +50,51 @@
       "price": "185",
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2F4.-meksykanskyj.jpg?alt=media&token=2dbd36ee-f219-4028-a7cf-1eabd91375ce",
       "id": 1
+    },
+    {
+      "category": {
+        "name": "Сети",
+        "path": "sets",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fnav-img-sets.svg?alt=media&token=ba72f3cb-8191-4f5a-a170-399d480e4a92",
+        "id": 2
+      },
+      "name": "Сет Філадельфія",
+      "path": "zapechenyj-set",
+      "description": "Філадельфія: з лососем / в кунжуті / з тунцем / з вугрем",
+      "weight": "1070",
+      "price": "1075",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fscaled.jpg?alt=media&token=675a2e88-3b82-4873-a089-807ba62b860a",
+      "id": 2
+    },
+    {
+      "category": {
+        "name": "Напої",
+        "path": "drinks",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fnav-img-drinks.svg?alt=media&token=7883876a-7ccf-443a-bc57-146782799114",
+        "id": 3
+      },
+      "name": "Pepsi",
+      "path": "pepsi-cola",
+      "description": "Pepsi",
+      "weight": "0.33",
+      "price": "35",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Fpepsicola.jpg?alt=media&token=a071e471-4c34-4e70-b140-70edc05c7ec2",
+      "id": 3
+    },
+    {
+      "category": {
+        "name": "Соуси",
+        "path": "sauces",
+        "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2Ficon.svg?alt=media&token=7a07adc3-c752-414c-a5c1-38a114c04e8a",
+        "id": 4
+      },
+      "name": "Імбир",
+      "path": "imbyr",
+      "description": "Імбир",
+      "weight": "30",
+      "price": "12",
+      "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2F3333.png?alt=media&token=4ef3e7d4-7757-45de-9e7e-268e07f5841e",
+      "id": 4
     }
   ]
 }

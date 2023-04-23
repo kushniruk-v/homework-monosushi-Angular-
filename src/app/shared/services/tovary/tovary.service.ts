@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { ITovaryRequest, ITovaryResponse } from '../../interfaces/tovary/tovary-interface';
+import { ActivatedRouteSnapshot,  Resolve,  RouterStateSnapshot } from '@angular/router';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TovaryService {
+export class TovaryService implements Resolve<ITovaryResponse>{
   private url = environment.BACKEND_URL;
   private api = { tovary: `${this.url}/tovary` };
   constructor(private http:HttpClient) {}
@@ -34,4 +35,7 @@ export class TovaryService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api.tovary}/${id}`);
   }
+ resolve(route:ActivatedRouteSnapshot):Observable<ITovaryResponse>{
+  return this.http.get<ITovaryResponse>(`${this.api.tovary}/${route.paramMap.get('id')}`);
+ }
 }

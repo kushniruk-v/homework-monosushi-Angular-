@@ -8,9 +8,10 @@ export interface ITovaryRequest{
     weight: string;
     price: number;
     imagePath: string;
-   
+    count:number;
 }
 
 export interface ITovaryResponse extends ITovaryRequest{
     id:number;
+    
 }

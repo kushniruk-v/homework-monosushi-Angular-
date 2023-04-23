@@ -2,3 +2,16 @@
   width: 100px;
   margin: 30px auto 5px;
 }
+.primary {
+  width: 200px;
+  height: 50px;
+  background: none;
+  border: 2px solid #b5d8f7;
+  color: black;
+}
+.primary:hover {
+  background: #b5d8f7;
+}
+.border-name{
+  width:550px;
+}

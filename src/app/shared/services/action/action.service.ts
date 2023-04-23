@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IActionRequest, IActionResponse } from '../../interfaces/action/action-interface';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActionService {
+export class ActionService implements Resolve<IActionResponse> {
   private url = environment.BACKEND_URL;
   private api = { actions: `${this.url}/actions` };
 
@@ -15,6 +16,9 @@ export class ActionService {
 
   getAll(): Observable<IActionResponse[]> {
     return this.http.get<IActionResponse[]>(this.api.actions);
+  }
+  getOne(id: number): Observable<IActionResponse> {
+    return this.http.get<IActionResponse>(`${this.api.actions}/${id}`);
   }
   create(action: IActionRequest): Observable<IActionResponse> {
     return this.http.post<IActionResponse>(this.api.actions, action);
@@ -26,4 +30,7 @@ export class ActionService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api.actions}/${id}`);
   }
+  resolve(route:ActivatedRouteSnapshot):Observable<IActionResponse>{
+    return this.http.get<IActionResponse>(`${this.api.actions}/${route.paramMap.get('id')}`);
+   }
 }
