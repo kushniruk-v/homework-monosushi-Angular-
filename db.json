@@ -96,5 +96,19 @@
       "imagePath": "https://firebasestorage.googleapis.com/v0/b/monosushi-a6124.appspot.com/o/images%2F3333.png?alt=media&token=4ef3e7d4-7757-45de-9e7e-268e07f5841e",
       "id": 4
     }
+  ],
+  "auth": [
+    {
+      "id": 1,
+      "email": "adminmono@gmail.com",
+      "password": "admin12345",
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "email": "usermono@gmail.com",
+      "password": "user12345",
+      "role": "USER"
+    }
   ]
 }

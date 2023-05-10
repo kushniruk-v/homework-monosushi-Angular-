@@ -136,9 +136,9 @@
               width="12"
               height="20"
             />
-            <p class="my-1">Ми зателефонуємо</p>
+            <p class="my-1 ">Ми зателефонуємо</p>
           </div>
-          <div class="header-info">
+          <div class="header-info ms-4">
             <a class="header-phone" href="tel:0978780837"
               ><b>(097) 878 08 37</b></a
             >
@@ -147,16 +147,17 @@
             </div>
           </div>
 
-          <div class="header-user mx-4 my-1 menu-item user-icon text-center">
-            <a [routerLink]="['/admin']">
+          <div (click)="info()" class="header-user mx-2 my-1 menu-item user-icon text-center ms-2">
+            <a [routerLink]="['/auth' ]" >
               <img
                 class="mx-2 my-3"
                 src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg"
                 alt=""
               />
             </a>
+           
           </div>
-          <div class="header-basket">
+          <div class="header-basket ms-5">
             <img
               class="mx-3 my-4"
               src="https://monosushi.com.ua/wp-content/themes/monosushi/img/basket.svg"

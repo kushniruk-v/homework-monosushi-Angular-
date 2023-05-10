@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { ROLE } from 'src/app/shared/constans/role-constans';
 import { ITovaryResponse } from 'src/app/shared/interfaces/tovary/tovary-interface';
 import { OrderServiceService } from 'src/app/shared/order/order-service.service';
+import { AccountService } from 'src/app/shared/services/account/account.service';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +12,17 @@ import { OrderServiceService } from 'src/app/shared/order/order-service.service'
 export class HeaderComponent {
   public isActive = false;
   public isConteiner = false;
-
   public total = 0;
   private basket: Array<ITovaryResponse> = [];
-
+  public loginUrl = '';
   constructor(
-    private orderService: OrderServiceService
+    private orderService: OrderServiceService,
+    private accountService:AccountService
   ) { }
   ngOnInit(): void {
     this.loadBasket();
     this.updateBasket();
+  
   }
 
   showModel(): void {
@@ -48,5 +51,8 @@ export class HeaderComponent {
       this.loadBasket();
     })
   }
-
+  info():void{
+    alert('ADMIN ---email:adminmono@gmail.com;password:admin12345; USER ---email:usermono@gmail.com; password: "user12345')
+    
+  }
 }

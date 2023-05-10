@@ -25,6 +25,8 @@ import { AdminTovaryComponent } from './admin/admin-tovary/admin-tovary.componen
 import { TovaryComponent } from './pages/tovary/tovary.component';
 import { TovaryInfoComponent } from './pages/tovary-info/tovary-info.component';
 import { ActionInfoComponent } from './pages/action-info/action-info.component';
+import { AuthorizationComponent } from './pages/authorization/authorization.component';
+import { UserprofileComponent } from './pages/userprofile/userprofile.component';
 
 
 
@@ -45,6 +47,8 @@ import { ActionInfoComponent } from './pages/action-info/action-info.component';
        TovaryComponent,
        TovaryInfoComponent,
        ActionInfoComponent,
+       AuthorizationComponent,
+       UserprofileComponent,
     
   ],
   imports: [
