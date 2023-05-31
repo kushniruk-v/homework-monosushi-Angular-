@@ -1,5 +1,10 @@
+
+.container-fluid{
+  margin: 0px 0 0 280px;
+  width: 1060px;
+}
 .primary {
-    width: 150px;
+    width: 170px;
     height: 50px;
     background: none;
     border: 2px solid #b5d8f7;
@@ -8,3 +13,11 @@
   .primary:hover {
     background: #b5d8f7;
   }
+  .nav-item{
+    width:170px;
+    height: 100%;
+}
+.active{
+  
+    border-top: 3px solid  #b5d8f7;
+}

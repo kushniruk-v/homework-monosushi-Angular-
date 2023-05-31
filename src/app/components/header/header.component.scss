@@ -218,6 +218,7 @@
   margin: 10px 0 0 0px;
   list-style: none;
   padding: 5px 0 0 10px;
+  z-index: 1;
 }
 .menu:hover {
   border: 2px #b5d8f7 solid;
@@ -226,4 +227,13 @@
 .menu-2:hover {
   border: 2px #b5d8f7 solid;
   border-radius: 7px;
+}
+.demo-section {
+  position: relative;
+  right: 110px;
+  top: 35px;
+}
+.mat-badge-active {
+  color: black;
+  background-color: white;
 }

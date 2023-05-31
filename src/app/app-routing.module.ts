@@ -18,6 +18,9 @@ import { ActionService } from './shared/services/action/action.service';
 import { AuthGuard } from './shared/guards/auth/auth.guard';
 import { AuthorizationComponent } from './pages/authorization/authorization.component';
 import { UserprofileComponent } from './pages/userprofile/userprofile.component';
+import { PersonalDataComponent } from './pages/userprofile/personal-data/personal-data.component';
+import { OrderHistoryComponent } from './pages/userprofile/order-history/order-history.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'actions', component: ActionsComponent },
@@ -39,7 +42,12 @@ const routes: Routes = [
   { path: 'dostavka-ta-oplata', component: DostavkaTaOplataComponent },
   { path: 'about-us', component: AboutComponent },
   { path: 'auth', component: AuthorizationComponent },
-  { path: 'user-profile', component: UserprofileComponent,canActivate: [AuthGuard] },
+  { path: 'user-profile', component: UserprofileComponent,canActivate: [AuthGuard],
+children:[
+  {path:'personal-data', component:PersonalDataComponent},
+  {path:'order-history', component:OrderHistoryComponent},
+  { path: '', pathMatch: 'full', redirectTo: 'personal-data' },
+] },
   {
     path: 'admin',
     component: AdminComponent,

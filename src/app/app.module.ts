@@ -18,15 +18,26 @@ import { ActionsComponent } from './pages/actions/actions.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AdminActionComponent } from './admin/admin-action/admin-action.component';
 import { AdminComponent } from './admin/admin.component';
+
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+
 import { AdminTovaryComponent } from './admin/admin-tovary/admin-tovary.component';
 import { TovaryComponent } from './pages/tovary/tovary.component';
 import { TovaryInfoComponent } from './pages/tovary-info/tovary-info.component';
 import { ActionInfoComponent } from './pages/action-info/action-info.component';
 import { AuthorizationComponent } from './pages/authorization/authorization.component';
 import { UserprofileComponent } from './pages/userprofile/userprofile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component';
+import { SharedModule } from './shared/shared module';
+import { PersonalDataComponent } from './pages/userprofile/personal-data/personal-data.component';
+import { OrderHistoryComponent } from './pages/userprofile/order-history/order-history.component';
+import { BasketDialogComponent } from './pages/basket-dialog/basket-dialog.component';
+
 
 
 
@@ -49,6 +60,12 @@ import { UserprofileComponent } from './pages/userprofile/userprofile.component'
        ActionInfoComponent,
        AuthorizationComponent,
        UserprofileComponent,
+       AuthDialogComponent,
+       PersonalDataComponent,
+       OrderHistoryComponent,
+       BasketDialogComponent,
+       
+     
     
   ],
   imports: [
@@ -58,7 +75,12 @@ import { UserprofileComponent } from './pages/userprofile/userprofile.component'
     FormsModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    provideFirestore(()=>getFirestore()),
+    provideAuth(()=>getAuth()),
+    BrowserAnimationsModule,
+    SharedModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

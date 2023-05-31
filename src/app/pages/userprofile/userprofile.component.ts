@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./userprofile.component.scss']
 })
 export class UserprofileComponent {
+
+  public isActive= false;
+ 
   constructor(
     private router: Router
   ){

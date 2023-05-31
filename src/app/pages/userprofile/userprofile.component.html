@@ -1,5 +1,23 @@
-<div class="conteiner">
-    <hr class="border border-primary border-2 opacity-75" />
-    <h2 class="title text-center">Вітаю на сторінці користувача</h2>
-    <button (click)="logOut()" type="button" class="btn primary ">Вихід</button>
+<div class="container-fluid ">
+  <div class="d-flex align-items-start">
+    <ul class="nav flex-column  my-5 mx-4  ">
+      <li  [class.active]="isActive" class="nav-item border border-start-0  ">
+        <a class="nav-link text-center text-black " [routerLink]="[ 'personal-data' ]" routerLinkActive="active">Особисті дані</a>
+      </li>
+      <li [class.active]="isActive" class="nav-item border border-start-0   ">
+        <a class="nav-link  text-center text-black" [routerLink]="[ 'order-history' ]" routerLinkActive="active">Історія замовлень</a>
+      </li>
+
+      <button (click)="logOut()" type="button" class="btn primary  ">Вихід</button>
+    </ul>
+  
+    <div class="tab-content w-100" id="v-pills-tabContent">
+      <router-outlet></router-outlet>
   </div>
+  </div>
+      
+      
+  </div>
+
+
+

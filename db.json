@@ -108,6 +108,7 @@
       "id": 2,
       "email": "usermono@gmail.com",
       "password": "user12345",
+      "fullName": "Vasyl Kushniruk",
       "role": "USER"
     }
   ]

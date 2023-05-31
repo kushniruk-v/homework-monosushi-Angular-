@@ -147,8 +147,9 @@
             </div>
           </div>
 
-          <div (click)="info()" class="header-user mx-2 my-1 menu-item user-icon text-center ms-2">
-            <a [routerLink]="['/auth' ]" >
+        
+          <div  class="header-user mx-2 my-1 menu-item user-icon text-center ms-2">
+            <a (click)="openLoginDialog()" >
               <img
                 class="mx-2 my-3"
                 src="https://monosushi.com.ua/wp-content/themes/monosushi/img/user.svg"
@@ -157,12 +158,14 @@
             </a>
            
           </div>
-          <div class="header-basket ms-5">
+          <div class="header-basket ms-5" (click)="openBasketDialog()" >
+            <div matBadge="0" matBadgeOverlap="false" class="demo-section"></div>
             <img
               class="mx-3 my-4"
               src="https://monosushi.com.ua/wp-content/themes/monosushi/img/basket.svg"
               alt=""
             />
+            
             <span> <b>{{ total }}</b> грн</span>
           </div>
         </ul>
