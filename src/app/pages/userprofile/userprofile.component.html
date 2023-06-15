@@ -7,6 +7,9 @@
       <li [class.active]="isActive" class="nav-item border border-start-0   ">
         <a class="nav-link  text-center text-black" [routerLink]="[ 'order-history' ]" routerLinkActive="active">Історія замовлень</a>
       </li>
+      <li [class.active]="isActive" class="nav-item border border-start-0   ">
+        <a class="nav-link  text-center text-black" [routerLink]="[ 'password-change' ]" routerLinkActive="active">Зміна паролю</a>
+      </li>
 
       <button (click)="logOut()" type="button" class="btn primary  ">Вихід</button>
     </ul>

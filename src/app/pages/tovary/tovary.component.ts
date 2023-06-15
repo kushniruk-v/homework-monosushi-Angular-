@@ -54,9 +54,7 @@ addToBasket(tovar: ITovaryResponse): void {
     } else {
       basket.push(tovar);
     }
-  } else {
-    basket.push(tovar);
-  }
+  } 
   localStorage.setItem('basket', JSON.stringify(basket));
   tovar .count = 1;
   this.orderService.changeBasket.next(true);

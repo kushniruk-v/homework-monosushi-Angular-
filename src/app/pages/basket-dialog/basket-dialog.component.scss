@@ -17,5 +17,29 @@
   width: 200px;
   height: 50px;
   background: #e4e4e4;
-  margin-left: 200px;
+margin-left: 350px;
+}
+.order:hover{
+  background: #b5d8f7;
+  border: 2px solid #e4e4e4;
+}
+.btn-count{
+  border: 1px solid rgb(175, 174, 174);
+  border-radius: 8px;
+
+}
+.form-control{
+  border: none;
+}
+.count {
+  width: 38px;
+}
+.count:hover{
+  background: #b5d8f7;
+}
+.trash{
+  cursor: pointer;
+}
+.trash:hover{
+  fill: #b5d8f7;
 }

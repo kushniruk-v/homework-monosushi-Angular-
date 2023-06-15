@@ -11,15 +11,26 @@ const MATIRIAL =[
     MatInputModule,
     MatButtonModule,
     MatBadgeModule
-
 ]
+// Other modules
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
     declarations:[],
     imports:[
-        ...MATIRIAL
+        ...MATIRIAL,
+      HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule,
     ],
     exports:[
-        ...MATIRIAL
+        ...MATIRIAL,
+      HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule,
+
     ]
 })
 export class SharedModule{ }

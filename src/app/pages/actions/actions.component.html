@@ -7,24 +7,24 @@
   <div class="row mx-5  my-4">
     <div class="col-5 mx-4" *ngFor="let actions of userActions">
       <div class="border-icon text-center ">
-        <img  [routerLink]="[ '/action', actions.id ]" 
-          [src]="actions.imagePath"
-          class="my-2 mx-4 rounded"
-          width="550"
-          height="300"
-          [alt]="actions.name"
-        />
-      
+          <img  [routerLink]="[ '/action', actions.id ]"
+                [src]="actions.imagePath"
+                class="my-2 mx-4 rounded"
+                width="550"
+                height="300"
+                [alt]="actions.name"
+          />
+
           <h5 class=" title">{{actions.name }}</h5>
           <hr class="border border-primary border-2 opacity-75  border-name mx-4" />
-          <button  [routerLink]="[ '/action', actions.id]" 
-          
+          <button  [routerLink]="[ '/action', actions.id]"
+
           type="submit"
           class="btn primary my-4"
         >
           Дізнатись більше
         </button>
-        
+
       </div>
     </div>
   </div>

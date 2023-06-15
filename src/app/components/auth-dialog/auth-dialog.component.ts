@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from '@angular/fire/auth';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ROLE } from 'src/app/shared/constans/role-constans';
@@ -19,7 +19,7 @@ export interface Iregister {
   phoneNumber: string;
   email: string;
   password: string;
-  returnpassword?: string;
+  repeatpassword?: string;
 }
 
 @Component({
@@ -32,6 +32,7 @@ export class AuthDialogComponent {
   public registerForm!: FormGroup;
   public isModal = false;
   private registerData!: Iregister;
+  public checkPassword =false;
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +60,7 @@ export class AuthDialogComponent {
       phoneNumber: [null, [Validators.required]],
       email: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      returnpassword: [null, [Validators.required]],
+      repeatpassword: [null, [Validators.required]],
     });
   }
 
@@ -128,5 +129,24 @@ export class AuthDialogComponent {
     };
 
     setDoc(doc(this.AngularFireStorage, 'users', credential.user.uid), user);
+  }
+  checkrepeatPassword():void{
+this.checkPassword =this.password.value === this.repeatpassword.value;
+if (this.password.value!==this.repeatpassword.value){
+this.registerForm.controls['repeatpassword'].setErrors({
+  matchError:'Пароль не вірний'
+})
+}
+  }
+get password():AbstractControl{
+    return this.registerForm.controls['password']
+
+}
+  get repeatpassword():AbstractControl{
+    return this.registerForm.controls['repeatpassword']
+
+  }
+  checkVisibilityError(control:string,name:string):boolean | null{
+return this.registerForm.controls[control].errors?.[name]
   }
 }

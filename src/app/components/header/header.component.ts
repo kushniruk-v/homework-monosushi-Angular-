@@ -6,6 +6,8 @@ import { OrderServiceService } from 'src/app/shared/order/order-service.service'
 import { AccountService } from 'src/app/shared/services/account/account.service';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { BasketDialogComponent } from 'src/app/pages/basket-dialog/basket-dialog.component';
+import { count } from 'rxjs';
+import { CallbackDialogComponent } from '../callback-dialog/callback-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +18,7 @@ export class HeaderComponent {
   public isActive = false;
   public isConteiner = false;
   public total = 0;
+  public countTovary =0;
   private basket: Array<ITovaryResponse> = [];
   public loginUrl = '';
   constructor(
@@ -42,6 +45,7 @@ export class HeaderComponent {
       this.basket = JSON.parse(localStorage.getItem('basket') as string);
     }
     this.getTotalPrice();
+    this.getTotalCount();
   }
 
   getTotalPrice(): void {
@@ -50,6 +54,13 @@ export class HeaderComponent {
         total + tovar.count * tovar.price,
       0
     );
+  
+  }
+  getTotalCount():void{
+    this.countTovary=this.basket.reduce(
+      (total:number, count:ITovaryResponse)=>
+total+count.count,0
+    )
   }
 
   updateBasket(): void {
@@ -74,6 +85,15 @@ export class HeaderComponent {
       backdropClass: 'dialog-back-2',
       panelClass: 'auth-dialog-2',
       position: { right: '0px', top: '90px' },
-    });
+    }).afterClosed();
+  }
+  openCallbackDialog():void{
+    this.dialog
+    .open(CallbackDialogComponent, {
+      backdropClass: 'dialog-back',
+      panelClass: 'auth-dialog',
+      autoFocus: false,
+    })
+    .afterClosed()
   }
 }

@@ -1,18 +1,86 @@
 <div class="conteiner">
-  <div class="block-item text-center mt-4">
+  <div *ngIf="userTovary.length" class="tovary">
+    <table class="table" style="height: 100px">
+      <tbody>
+        <tr *ngFor="let tovary of userTovary">
+          <td style="width: 25%">
+            <img
+              [src]="tovary.imagePath"
+              class="my-2 mx-4"
+              style="width: 120px; height: 90px"
+              [alt]=""
+            />
+          </td>
+          <td style="width: 10%" class="align-middle">{{ tovary.name }}</td>
+          <td class="align-middle" style="width: 10%">
+            <div class="btn-count d-flex">
+              <button
+                (click)="tovaryCount(tovary, false)"
+                type="button"
+                class="btn count"
+              >
+                -
+              </button>
+
+              <input
+                class="form-control"
+                type="text"
+                [value]="tovary.count"
+                style="width: 40px"
+              />
+
+              <button
+                (click)="tovaryCount(tovary, true)"
+                type="button"
+                class="btn count"
+              >
+                +
+              </button>
+            </div>
+          </td>
+          <td class="align-middle">{{ tovary.price * tovary.count }} грн</td>
+
+          <td class="align-middle" (click)="deleteTovar(tovary)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="trash"
+              height="20px"
+              viewBox="0 0 448 512"
+            >
+              ! Font Awesome Free 6.4.0 by @fontawesome -
+              https://fontawesome.com License - https://fontawesome.com/license
+              (Commercial License) Copyright 2023 Fonticons, Inc.
+              <style>
+                svg {
+                  fill: #5a5a5a;
+                }
+              </style>
+              <path
+                d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"
+              />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!userTovary.length" class="block-item text-center mt-4">
     <img
       src="https://monosushi.com.ua/wp-content/themes/monosushi/img/icons/cart-empty-img.svg"
       alt=""
     />
     <h4 class="mt-4">Кошик порожній</h4>
-    <button type="submit" class="btn primary mt-2 mb-3">
+    <button type="submit" (click)="goHomePage()" class="btn primary mt-2 mb-3">
       Перейти до каталогу
     </button>
   </div>
   <div class="block-price d-flex align-items-center" style="height: 76px">
     <div class="text d-flex ms-3 mt-3">
       <p>сума:</p>
-      <p><b>0</b>грн</p>
+      <p>
+        <b>{{ total }}</b
+        >грн
+      </p>
     </div>
     <button type="submit" class="btn order">Оформити замовлення</button>
   </div>

@@ -165,6 +165,7 @@
   border-radius: 7px;
   margin: 15px 0 0 40px;
   border: 2px #b5d8f7 solid;
+  cursor: pointer;
 }
 
 .call-back:hover {
@@ -193,6 +194,7 @@
   height: 80px;
   background-color: #b5d8f7;
   margin-left: 75px;
+  cursor: pointer;
 }
 .dropdown {
   width: 250px;
@@ -236,4 +238,7 @@
 .mat-badge-active {
   color: black;
   background-color: white;
+}
+.header-user{
+  cursor: pointer;
 }

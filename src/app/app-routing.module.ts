@@ -1,69 +1,56 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
-import { ActionsComponent } from './pages/actions/actions.component';
-import { DostavkaTaOplataComponent } from './pages/dostavka-ta-oplata/dostavka-ta-oplata.component';
-import { AboutComponent } from './pages/about/about.component';
 
-import { AdminComponent } from './admin/admin.component';
-import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
-import { AdminActionComponent } from './admin/admin-action/admin-action.component';
-import { AdminTovaryComponent } from './admin/admin-tovary/admin-tovary.component';
-import { TovaryComponent } from './pages/tovary/tovary.component';
-import { TovaryInfoComponent } from './pages/tovary-info/tovary-info.component';
-import { TovaryService } from './shared/services/tovary/tovary.service';
-import { ActionInfoComponent } from './pages/action-info/action-info.component';
-import { ActionService } from './shared/services/action/action.service';
 import { AuthGuard } from './shared/guards/auth/auth.guard';
-import { AuthorizationComponent } from './pages/authorization/authorization.component';
-import { UserprofileComponent } from './pages/userprofile/userprofile.component';
-import { PersonalDataComponent } from './pages/userprofile/personal-data/personal-data.component';
-import { OrderHistoryComponent } from './pages/userprofile/order-history/order-history.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'actions', component: ActionsComponent },
-  {
-    path: 'action/:id',
-    component: ActionInfoComponent,
-    resolve: {
-      actionInfo: ActionService,
-    },
-  },
-  { path: 'product-category/:category', component: TovaryComponent },
-  {
-    path: 'product-category/:category/:id',
-    component: TovaryInfoComponent,
-    resolve: {
-      tovaryInfo: TovaryService,
-    },
-  },
-  { path: 'dostavka-ta-oplata', component: DostavkaTaOplataComponent },
-  { path: 'about-us', component: AboutComponent },
-  { path: 'auth', component: AuthorizationComponent },
-  { path: 'user-profile', component: UserprofileComponent,canActivate: [AuthGuard],
-children:[
-  {path:'personal-data', component:PersonalDataComponent},
-  {path:'order-history', component:OrderHistoryComponent},
-  { path: '', pathMatch: 'full', redirectTo: 'personal-data' },
-] },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: 'category', component: AdminCategoryComponent },
-      { path: 'action', component: AdminActionComponent },
-      { path: 'tovary', component: AdminTovaryComponent },
+  {path:'actions',
 
-      { path: '', pathMatch: 'full', redirectTo: 'action' },
-    ],
+    loadChildren:()=>import('./pages/actions/actions.module').
+    then(m=> m.ActionsModule)
   },
+
+  {
+   path: 'product-category',
+
+    loadChildren:()=> import('./pages/tovary/tovary.module').
+    then(m=> m.TovaryModule)
+  },
+
+
+
+  {path:'dostavka-ta-oplata', loadChildren:()=>import('./pages/dostavka-ta-oplata/dostavka-ta-oplata.module').
+    then(m=> m.DostavkaTaOplataModule)
+  },
+
+  {path:'about-us', loadChildren:()=> import('./pages/about/about.module').
+    then(m=> m.AboutModule)},
+
+  {path:'auth', loadChildren:()=> import('./pages/authorization/authorization.module').
+    then(m=> m.AuthorizationModule)
+  },
+
+  {
+    path:'user-profile',
+    canActivate: [AuthGuard],
+    loadChildren:()=>import('./pages/userprofile/userprofile.module').then(m=>m.UserprofileModule)
+  },
+  {
+    path:'admin',
+    canActivate: [AuthGuard],
+    loadChildren:()=> import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    preloadingStrategy:PreloadAllModules
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
