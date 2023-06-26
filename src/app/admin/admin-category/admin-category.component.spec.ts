@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminCategoryComponent } from './admin-category.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Storage } from '@angular/fire/storage';
+
 
 describe('AdminCategoryComponent', () => {
   let component: AdminCategoryComponent;
@@ -8,7 +11,13 @@ describe('AdminCategoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminCategoryComponent ]
+      imports:[
+        HttpClientTestingModule
+      ],
+      declarations: [ AdminCategoryComponent ],
+      providers:[
+        {provide: Storage, useValue:{}}
+      ]
     })
     .compileComponents();
 

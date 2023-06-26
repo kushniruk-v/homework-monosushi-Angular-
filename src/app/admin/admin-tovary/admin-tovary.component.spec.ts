@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminTovaryComponent } from './admin-tovary.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Storage } from '@angular/fire/storage';
 
 describe('AdminTovaryComponent', () => {
   let component: AdminTovaryComponent;
@@ -8,7 +10,11 @@ describe('AdminTovaryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminTovaryComponent ]
+      declarations: [ AdminTovaryComponent ],
+      imports:[HttpClientTestingModule],
+      providers:[
+        {provide: Storage, useValue:{}}
+      ]
     })
     .compileComponents();
 

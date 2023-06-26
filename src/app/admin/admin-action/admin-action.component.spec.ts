@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminActionComponent } from './admin-action.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Storage } from '@angular/fire/storage';
+
 
 describe('AdminActionComponent', () => {
   let component: AdminActionComponent;
@@ -8,8 +11,16 @@ describe('AdminActionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminActionComponent ]
-    })
+      imports:[
+        HttpClientTestingModule
+      ],
+      declarations: [ AdminActionComponent ],
+        providers:[
+          {provide: Storage, useValue:{}}
+        ]
+    }
+
+      )
     .compileComponents();
 
     fixture = TestBed.createComponent(AdminActionComponent);

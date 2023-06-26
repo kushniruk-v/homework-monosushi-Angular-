@@ -23,13 +23,13 @@ constructor(
   private auth:Auth,
   private AngularFireStorage:Firestore
 ){
-  
+
 }
   ngOnDestroy(): void {
 this.loginSubsrition.unsubscribe();
   }
 ngOnInit(): void {
-this.initAuthForm();
+    this.initAuthForm();
 }
 initAuthForm():void{
 this.authForm=this.fb.group({
@@ -43,7 +43,7 @@ const {email,password} =this.authForm.value;
 this.login(email,password).then(()=>{
   // console.log('login done');
 }).catch(e=>{
-  // console.log('login error',e); 
+  // console.log('login error',e);
 })
 }
 async login(email: string, password: string): Promise<void> {
@@ -57,7 +57,7 @@ console.log(credential.user.uid);
     }
 }, (e)=>{
   console.log('error',e);
-  
+
 })
 }
 

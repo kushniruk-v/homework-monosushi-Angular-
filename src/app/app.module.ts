@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,7 +22,6 @@ import { CallbackDialogComponent } from './components/callback-dialog/callback-d
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +30,9 @@ import { CallbackDialogComponent } from './components/callback-dialog/callback-d
     HomeComponent,
     AuthDialogComponent,
     BasketDialogComponent,
-    CallbackDialogComponent
+    CallbackDialogComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -41,10 +42,12 @@ import { CallbackDialogComponent } from './components/callback-dialog/callback-d
     provideFirestore(()=>getFirestore()),
     provideAuth(()=>getAuth()),
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
 
   ],
   providers: [],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

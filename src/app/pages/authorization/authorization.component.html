@@ -5,7 +5,7 @@
   <form [formGroup]="authForm" (ngSubmit)="loginUser()" >
       <div class=" mx-4">
         <div class="mb-3">
-          <label for="name" class="form-label"></label>
+<!--          <label for="name" class="form-label"></label>-->
           <input formControlName="email" name="email" type="text" class="form-control " id="email" placeholder="*Ваш email">
           </div>
           <div class="mb-3">
@@ -13,9 +13,9 @@
           <input formControlName="password" name="password" type="password" class="form-control  " id="password" placeholder="*Пароль">
           </div>
           <button  [disabled]="authForm.invalid"type="submit" class=" btn primary " >Увійти в кабінет</button>
-          
+
         </div>
-      
+
   </form>
 </div>
 </div>

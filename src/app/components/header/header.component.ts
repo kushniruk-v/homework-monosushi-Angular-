@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ROLE } from 'src/app/shared/constans/role-constans';
 import { ITovaryResponse } from 'src/app/shared/interfaces/tovary/tovary-interface';
 import { OrderServiceService } from 'src/app/shared/order/order-service.service';
 import { AccountService } from 'src/app/shared/services/account/account.service';
@@ -19,7 +18,7 @@ export class HeaderComponent {
   public isConteiner = false;
   public total = 0;
   public countTovary =0;
-  private basket: Array<ITovaryResponse> = [];
+  public basket: Array<ITovaryResponse> = [];
   public loginUrl = '';
   constructor(
     private orderService: OrderServiceService,
@@ -54,7 +53,7 @@ export class HeaderComponent {
         total + tovar.count * tovar.price,
       0
     );
-  
+
   }
   getTotalCount():void{
     this.countTovary=this.basket.reduce(

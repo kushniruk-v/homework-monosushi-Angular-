@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import { TovaryService } from './tovary.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 
 describe('TovaryService', () => {
   let service: TovaryService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports:[
+        HttpClientTestingModule
+      ]
+    });
     service = TestBed.inject(TovaryService);
   });
 
