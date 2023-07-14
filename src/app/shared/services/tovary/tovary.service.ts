@@ -3,22 +3,36 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { ITovaryRequest, ITovaryResponse } from '../../interfaces/tovary/tovary-interface';
-import { ActivatedRouteSnapshot,  Resolve,  RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot,  RouterStateSnapshot } from '@angular/router';
+import {
+  Firestore,
+  CollectionReference,
+  addDoc,
+  collectionData,
+  doc,
+  updateDoc,
+  deleteDoc, docData
+} from "@angular/fire/firestore";
+import { DocumentData, collection } from "@firebase/firestore"
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TovaryService implements Resolve<ITovaryResponse>{
+export class TovaryService {
   private url = environment.BACKEND_URL;
   private api = { tovary: `${this.url}/tovary` };
-  constructor(private http:HttpClient) {}
+  private tovaryCollection!: CollectionReference <DocumentData>
+  constructor(private http:HttpClient,
+    private AngularFireStorage:Firestore ) {
+      this.tovaryCollection = collection(AngularFireStorage, 'tovary');
+    }
 
   getAll(): Observable<ITovaryResponse[]> {
     return this.http.get<ITovaryResponse[]>(this.api.tovary);
   }
   getAllByCategory(name: string): Observable<ITovaryResponse[]> {
-    return this.http.get<ITovaryResponse[]>(`${this.api.tovary}?category.path=${name}`);
+    return this.http.get<ITovaryResponse[]>(`${this.api.tovary}?tovary.path=${name}`);
   }
 
   getOne(id: number): Observable<ITovaryResponse> {
@@ -35,7 +49,30 @@ export class TovaryService implements Resolve<ITovaryResponse>{
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api.tovary}/${id}`);
   }
- resolve(route:ActivatedRouteSnapshot):Observable<ITovaryResponse>{
-  return this.http.get<ITovaryResponse>(`${this.api.tovary}/${route.paramMap.get('id')}`);
- }
+
+
+    // ..........................................Firebase//
+    getAllFirebase() {
+      return collectionData(this.tovaryCollection, {idField:'id'})
+   
+    }
+    getAllByCategoryFirebase(){
+      return collectionData(this.tovaryCollection, {idField: 'id'});
+    }
+    getOneFirebase(id: string){
+      const tovarDocumentReferens =doc(this.AngularFireStorage,`tovary/${id}`);
+      return docData(tovarDocumentReferens,{idField:'id'});
+    }
+  createFirebase(tovar: ITovaryRequest){
+      return addDoc(this.tovaryCollection,tovar);
+    }
+    updateFirebase(action: ITovaryRequest, id: string) {
+      const tovarDocumentReferens =doc(this.AngularFireStorage,`tovary/${id}`);
+      return updateDoc(tovarDocumentReferens,{...action});
+    }
+    deleteFirebase(id: string) {
+      const tovarDocumentReferens =doc(this.AngularFireStorage,`tovary/${id}`);
+      return deleteDoc(tovarDocumentReferens);
+    }
+
 }

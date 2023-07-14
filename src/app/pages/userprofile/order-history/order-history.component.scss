@@ -1,3 +1,15 @@
-thead{
-    border-bottom: 2px solid #b5d8f7;
+thead {
+  border-bottom: 2px solid #b5d8f7;
+}
+.tovarname {
+  display: grid;
+}
+.count {
+  display: flex;
+}
+p {
+  margin-left: 10px;
+}
+.status {
+  color: rgb(20, 165, 20);
 }

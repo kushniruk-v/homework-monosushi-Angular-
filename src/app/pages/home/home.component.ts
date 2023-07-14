@@ -16,8 +16,8 @@ export class HomeComponent {
     this.getTovary();
   }
   getTovary(): void {
-    this.TovaryService.getAll().subscribe(data => {
-      this.userTovary = data;
+    this.TovaryService.getAllFirebase().subscribe(data => {
+      this.userTovary = data as ITovaryResponse[];
     })
   }
 }

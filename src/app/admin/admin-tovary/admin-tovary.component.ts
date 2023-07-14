@@ -26,7 +26,7 @@ export class AdminTovaryComponent {
   public isOpen = false;
   public isModal = false;
   public editStatus = false;
-  private currentTovaryId = 0;
+  private currentTovaryId!: number |string;;
 
   public uploadPercent!: number;
   public isUploaded = false;
@@ -64,29 +64,47 @@ export class AdminTovaryComponent {
     });
   }
   loadCategories(): void {
-    this.categoryService.getAll().subscribe((data) => {
-      this.adminCategories = data;
+    // this.categoryService.getAll().subscribe((data) => {
+    //   this.adminCategories = data;
+    //   this.tovaryForm.patchValue({
+    //     category: this.adminCategories[0].id,
+    //   });
+    // });
+    this.categoryService.getAllFirebase().subscribe((data) => {
+      this.adminCategories = data as ICategoryResponse[];
       this.tovaryForm.patchValue({
         category: this.adminCategories[0].id,
       });
     });
   }
   loadTovary(): void {
-    this.tovaryService.getAll().subscribe((data) => {
-      this.adminTovary = data;
+    // this.tovaryService.getAll().subscribe((data) => {
+    //   this.adminTovary = data;
+    // });
+    this.tovaryService.getAllFirebase().subscribe((data) => {
+      this.adminTovary = data as ITovaryResponse[];
     });
   }
 
   saveTovary(): void {
     if (this.editStatus) {
+      // this.tovaryService
+      //   .update(this.tovaryForm.value, this.currentTovaryId)
+      //   .subscribe(() => {
+      //     this.loadTovary();
+      //     this.isModal = false;
+      //   });
       this.tovaryService
-        .update(this.tovaryForm.value, this.currentTovaryId)
-        .subscribe(() => {
-          this.loadTovary();
-          this.isModal = false;
-        });
+      .updateFirebase(this.tovaryForm.value, this.currentTovaryId as string)
+      .then(() => {
+        this.loadTovary();
+        this.isModal = false;
+      });
     } else {
-      this.tovaryService.create(this.tovaryForm.value).subscribe(() => {
+      // this.tovaryService.create(this.tovaryForm.value).subscribe(() => {
+      //   this.loadTovary();
+      // });
+      this.tovaryService.createFirebase(this.tovaryForm.value).then(() => {
         this.loadTovary();
       });
     }
@@ -107,14 +125,17 @@ export class AdminTovaryComponent {
       imagePath: tovary.imagePath,
     });
 
-    this.currentTovaryId = tovary.id;
+    this.currentTovaryId = tovary.id as number;
     this.editStatus = true;
     this.isModal = true;
     this.isUploaded = true;
     this.uploadPercent = 0;
   }
   deleteTovary(tovary: ITovaryResponse): void {
-    this.tovaryService.delete(tovary.id).subscribe(() => {
+    // this.tovaryService.delete(tovary.id).subscribe(() => {
+    //   this.loadTovary();
+    // });
+    this.tovaryService.deleteFirebase(tovary.id as string).then(() => {
       this.loadTovary();
     });
   }

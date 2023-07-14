@@ -12,6 +12,6 @@ export interface ITovaryRequest{
 }
 
 export interface ITovaryResponse extends ITovaryRequest{
-    id:number;
+    id:number | string;
     
 }

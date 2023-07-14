@@ -3,16 +3,30 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IActionRequest, IActionResponse } from '../../interfaces/action/action-interface';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import {
+  Firestore,
+  CollectionReference,
+  addDoc,
+  collectionData,
+  doc,
+  updateDoc,
+  deleteDoc, docData
+} from "@angular/fire/firestore";
+import { DocumentData, collection } from "@firebase/firestore"
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActionService implements Resolve<IActionResponse> {
+export class ActionService  {
   private url = environment.BACKEND_URL;
   private api = { actions: `${this.url}/actions` };
+  private actionCollection!: CollectionReference <DocumentData>
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+    private AngularFireStorage:Firestore ) {
+      this.actionCollection = collection(AngularFireStorage, 'actions');
+     }
 
   getAll(): Observable<IActionResponse[]> {
     return this.http.get<IActionResponse[]>(this.api.actions);
@@ -30,7 +44,27 @@ export class ActionService implements Resolve<IActionResponse> {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api.actions}/${id}`);
   }
-  resolve(route:ActivatedRouteSnapshot):Observable<IActionResponse>{
-    return this.http.get<IActionResponse>(`${this.api.actions}/${route.paramMap.get('id')}`);
-   }
+  
+   
+     // ..........................................Firebase//
+     getAllFirebase() {
+      return collectionData(this.actionCollection, {idField:'id'})
+   
+    }
+    getOneFirebase(id: string){
+      const actionDocumentReferens =doc(this.AngularFireStorage,`actions/${id}`);
+      return docData(actionDocumentReferens,{idField:'id'});
+    }
+  createFirebase(action: IActionRequest){
+      return addDoc(this.actionCollection,action);
+    }
+    updateFirebase(action: IActionRequest, id: string) {
+      const actionDocumentReferens =doc(this.AngularFireStorage,`actions/${id}`);
+      return updateDoc(actionDocumentReferens,{...action});
+    }
+    deleteFirebase(id: string) {
+      const actionDocumentReferens =doc(this.AngularFireStorage,`actions/${id}`);
+      return deleteDoc(actionDocumentReferens);
+    }
+    
 }

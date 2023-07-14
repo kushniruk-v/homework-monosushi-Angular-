@@ -13,6 +13,7 @@ import { TovaryService } from 'src/app/shared/services/tovary/tovary.service';
 export class TovaryComponent {
   public userTovary: Array<ITovaryResponse> = [];
   private eventSubscription!: Subscription;
+  public categoryProductName!: string;
   constructor(
     private TovaryService: TovaryService,
     private activatedRoute: ActivatedRoute,
@@ -29,8 +30,11 @@ export class TovaryComponent {
  
   loadTovary(): void {
     const categoryName = this.activatedRoute.snapshot.paramMap.get('category') as string;
-    this.TovaryService.getAllByCategory(categoryName).subscribe(data => {
-      this.userTovary = data;
+    this.TovaryService.getAllByCategoryFirebase().subscribe(data => {
+      this.userTovary = data as ITovaryResponse[];
+      let categoryProducts = data.filter(item => item['category']['path'] == categoryName);
+
+      this.userTovary = categoryProducts as ITovaryResponse[];
     })
   }
   ngOnDestroy(): void {

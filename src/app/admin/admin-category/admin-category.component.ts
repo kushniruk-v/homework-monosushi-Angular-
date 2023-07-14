@@ -23,7 +23,7 @@ export class AdminCategoryComponent {
   public isOpen = false;
   public isModal = false;
   public editStatus = false;
-  private currentCategoryId = 0;
+  private currentCategoryId!: number |string;
 
   public uploadPercent!: number;
   public isUploaded = false;
@@ -56,8 +56,11 @@ export class AdminCategoryComponent {
   }
 
   loadCategories(): void {
-    this.categoryService.getAll().subscribe((data) => {
-      this.adminCategories = data;
+    // this.categoryService.getAll().subscribe((data) => {
+    //   this.adminCategories = data;
+    // });
+    this.categoryService.getAllFirebase().subscribe((data) => {
+      this.adminCategories = data as ICategoryResponse[];
     });
   }
 
@@ -68,7 +71,7 @@ export class AdminCategoryComponent {
       imagePath: category.imagePath,
     });
 
-    this.currentCategoryId = category.id;
+    this.currentCategoryId = category.id as number;
     this.editStatus = true;
     this.isModal = true;
 
@@ -78,14 +81,25 @@ export class AdminCategoryComponent {
   }
   saveCategory(): void {
     if (this.editStatus) {
+      // this.categoryService
+      //   .update(this.categoryForm.value, this.currentCategoryId)
+      //   .subscribe(() => {
+      //     this.loadCategories();
+      //   });
       this.categoryService
-        .update(this.categoryForm.value, this.currentCategoryId)
-        .subscribe(() => {
-          this.loadCategories();
-        });
+      .updateFirebase(this.categoryForm.value, this.currentCategoryId as string)
+      .then(() => {
+        this.loadCategories();
+      });
       this.isModal = false;
-    } else {
-      this.categoryService.create(this.categoryForm.value).subscribe(() => {
+    }
+    //  else {
+    //   this.categoryService.create(this.categoryForm.value).subscribe(() => {
+    //     this.loadCategories();
+    //   });
+    // }
+    else {
+      this.categoryService.createFirebase(this.categoryForm.value).then(() => {
         this.loadCategories();
       });
     }
@@ -97,7 +111,10 @@ export class AdminCategoryComponent {
   }
 
   deleteCategory(category: ICategoryResponse): void {
-    this.categoryService.delete(category.id).subscribe(() => {
+    // this.categoryService.delete(category.id as number).subscribe(() => {
+    //   this.loadCategories();
+    // });
+    this.categoryService.deleteFirebase(category.id as string).then(() => {
       this.loadCategories();
     });
   }
